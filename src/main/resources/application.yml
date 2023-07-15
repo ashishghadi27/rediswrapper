@@ -1,0 +1,7 @@
+#server:
+#  port: 8088
+#  servlet:
+#    context-path: /redis
+#spring:
+#  jackson:
+#    default-property-inclusion: non_null
