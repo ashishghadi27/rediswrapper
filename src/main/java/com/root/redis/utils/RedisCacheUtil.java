@@ -1,8 +1,5 @@
 package com.root.redis.utils;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.root.redis.context.RedisSessionContext;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +7,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.root.redis.utils.JsonSerializationUtils.jsonToObject;
+import static com.root.redis.utils.JsonSerializationUtils.objectToJson;
 
 @Component
 public class RedisCacheUtil {
@@ -65,29 +65,6 @@ public class RedisCacheUtil {
 
     public void deleteCache(String key){
         redisTemplate.delete(key);
-    }
-
-    private String objectToJson(Object object){
-        String value = null;
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        try {
-            value = mapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return value;
-    }
-
-    private <T> T jsonToObject(String json, Class<T> contextClass){
-        T value = null;
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            value = mapper.readValue(json, contextClass);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return value;
     }
 
 }

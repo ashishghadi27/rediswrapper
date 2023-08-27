@@ -1,7 +1,7 @@
 package com.root.redis.services;
 
+import com.root.commondependencies.exception.ValidationException;
 import com.root.redis.context.RedisSessionContext;
-import com.root.redis.exception.ValidationException;
 import com.root.redis.utils.RedisCacheUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
