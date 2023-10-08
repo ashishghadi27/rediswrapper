@@ -37,7 +37,7 @@ public class RedisCacheUtil {
     }
     public void setCachePermanently(String key, Object object){
         String value = objectToJson(object);
-        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.SECONDS);
     }
 
     public void setCache(String key, Object object){
@@ -52,7 +52,7 @@ public class RedisCacheUtil {
 
 
     public void setCacheStringPermanently(String key, String value){
-        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.MINUTES);
+        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.SECONDS);
     }
 
     public void setCacheString(String key, String value){
