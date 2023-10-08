@@ -18,7 +18,7 @@ public class RedisCacheUtil {
 
     private static final int DEFAULT_TIMEOUT = 1800;
 
-    private static final int PERMANENT_TIMEOUT = Integer.MAX_VALUE;
+    private static final int PERMANENT_TIMEOUT = Integer.MAX_VALUE - 10;
 
     public RedisCacheUtil(@Autowired RedisTemplate<String, Object> redisTemplate){
         this.redisTemplate = redisTemplate;
