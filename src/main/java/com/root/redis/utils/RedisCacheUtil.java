@@ -18,7 +18,7 @@ public class RedisCacheUtil {
 
     private static final int DEFAULT_TIMEOUT = 1800;
 
-    private static final long PERMANENT_TIMEOUT = Long.MAX_VALUE;
+    private static final int PERMANENT_TIMEOUT = Integer.MAX_VALUE;
 
     public RedisCacheUtil(@Autowired RedisTemplate<String, Object> redisTemplate){
         this.redisTemplate = redisTemplate;
@@ -37,7 +37,7 @@ public class RedisCacheUtil {
     }
     public void setCachePermanently(String key, Object object){
         String value = objectToJson(object);
-        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.MINUTES);
     }
 
     public void setCache(String key, Object object){
@@ -52,7 +52,7 @@ public class RedisCacheUtil {
 
 
     public void setCacheStringPermanently(String key, String value){
-        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set(key, value, PERMANENT_TIMEOUT, TimeUnit.MINUTES);
     }
 
     public void setCacheString(String key, String value){
